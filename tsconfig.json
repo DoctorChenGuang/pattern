@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es5",
+      "allowJs": true,
+      //识别基本的系统类库
+      "lib": [
+        "es6",
+        // "webworker",
+        "dom",
+        // "dom.iterable",
+      ],
+      "experimentalDecorators": true, //开启修饰器模式
+      "emitDecoratorMetadata": true,
+      "downlevelIteration": true, // Map()接口
+      "noImplicitAny": false,
+      "removeComments": true,
+      "outDir": "dist",
+      "sourceMap": true,
+      "jsx": "preserve",
+      "moduleResolution": "node",
+      // 这可以对 `this` 上的数据属性进行更严格的推断
+      "strict": true,
+    },
+    "include": [
+      "src/**/*", "scripts/dev.js",
+    ],
+    "exclude": [
+      "node_module"
+    ],
+    "paths": {
+      "lib/*": [
+        // "./litelib/*"
+      ]
+    }
+  }

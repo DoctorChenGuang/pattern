@@ -1,0 +1,30 @@
+{
+  "name": "pattern",
+  "version": "1.0.0",
+  "description": "Just practice pattern.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoctorChenGuang/pattern.git"
+  },
+  "author": "cg",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/DoctorChenGuang/pattern/issues"
+  },
+  "homepage": "https://github.com/DoctorChenGuang/pattern#readme",
+  "devDependencies": {
+    "@types/jsdom": "^12.2.0",
+    "@types/node": "^10.12.9",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.4.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "require-dir": "^1.1.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
+  }
+}
