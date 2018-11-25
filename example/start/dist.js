@@ -42,8 +42,9 @@
         Duck.prototype.performFly = function () {
             this.flyBehavior.fly();
         };
-        Duck.prototype.swim = function () { };
-        Duck.prototype.display = function () { };
+        Duck.prototype.swim = function () {
+            console.log('所有鸭子必备技能，会游泳');
+        };
         return Duck;
     }());
 
@@ -73,6 +74,9 @@
             _this.flyBehavior = new FlyWithWings();
             return _this;
         }
+        MallardDuck.prototype.display = function () {
+            console.log('我是一只绿头鸭子');
+        };
         return MallardDuck;
     }(Duck));
     var md = new MallardDuck();

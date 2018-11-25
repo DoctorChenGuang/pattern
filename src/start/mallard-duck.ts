@@ -5,8 +5,13 @@ import { FlyWithWings } from "./fly/fly-with-wings";
 class MallardDuck extends Duck {
   constructor() {
     super();
+    //此处依赖性过强
     this.quackBehavior = new Quack();
     this.flyBehavior = new FlyWithWings();
+  }
+
+  public display() {
+    console.log('我是一只绿头鸭子');
   }
 }
 
