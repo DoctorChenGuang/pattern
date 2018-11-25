@@ -1,8 +1,19 @@
+import { QuackBehavior } from "./quack/quack-behavior";
+import { FlyBehavior } from "./fly/fly-behavior";
+
 class Duck {
-  info() {
-    console.log('我是一只鸭子');
+  quackBehavior!: QuackBehavior;
+  flyBehavior!: FlyBehavior;
+  performQuack() {
+    this.quackBehavior.quack();
   }
+  performFly() {
+    this.flyBehavior.fly();
+  }
+  swim() { }
+  display() { }
 }
 
-let duck = new Duck();
-duck.info();
+export {
+  Duck
+}

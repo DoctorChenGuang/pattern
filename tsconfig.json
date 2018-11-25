@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "module": "commonjs",
+      "module": "ES2015",
       "target": "es5",
       "allowJs": true,
       //识别基本的系统类库
