@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (factory((global.pattern = {})));
-}(this, (function (exports) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (factory());
+}(this, (function () { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -45,6 +45,12 @@
         Duck.prototype.swim = function () {
             console.log('所有鸭子必备技能，会游泳');
         };
+        Duck.prototype.setFlyBehavior = function (flyBehavior) {
+            this.flyBehavior = flyBehavior;
+        };
+        Duck.prototype.setQuackBehavior = function (quackBehavior) {
+            this.quackBehavior = quackBehavior;
+        };
         return Duck;
     }());
 
@@ -79,11 +85,43 @@
         };
         return MallardDuck;
     }(Duck));
-    var md = new MallardDuck();
-    md.performFly();
 
-    exports.MallardDuck = MallardDuck;
+    var ModelDuck = (function (_super) {
+        __extends(ModelDuck, _super);
+        function ModelDuck() {
+            var _this = _super.call(this) || this;
+            _this.quackBehavior = new Quack();
+            _this.flyBehavior = new FlyWithWings();
+            return _this;
+        }
+        ModelDuck.prototype.display = function () {
+            console.log('我是一只模型鸭子');
+        };
+        return ModelDuck;
+    }(Duck));
 
-    Object.defineProperty(exports, '__esModule', { value: true });
+    var FlyRocketPowered = (function () {
+        function FlyRocketPowered() {
+        }
+        FlyRocketPowered.prototype.fly = function () {
+            console.log('我是一只依赖rocket powered飞行的鸭子( •̀ ω •́ )✧');
+        };
+        return FlyRocketPowered;
+    }());
+
+    var Test = (function () {
+        function Test() {
+        }
+        Test.main = function () {
+            var md = new MallardDuck();
+            md.performFly();
+            var modelDuck = new ModelDuck();
+            modelDuck.performFly();
+            modelDuck.setFlyBehavior(new FlyRocketPowered);
+            modelDuck.performFly();
+        };
+        return Test;
+    }());
+    Test.main();
 
 })));
