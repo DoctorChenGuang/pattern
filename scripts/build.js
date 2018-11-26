@@ -5,9 +5,9 @@ const tscompile = require('typescript');
 
 async function build(){
   const rollupConfig = {
-    input: './src/strategy/main.ts',
+    input: './src/observer/main.ts',
     output: {
-      file: './example/strategy/dist.js',
+      file: './example/observer/dist.js',
       format: 'umd',
       name: 'pattern'
     },
