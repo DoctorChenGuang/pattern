@@ -1,11 +1,13 @@
 # pattern
+[![Build Status](https://travis-ci.org/DoctorChenGuang/pattern.svg?branch=master)](https://travis-ci.org/DoctorChenGuang/pattern)
+
 Just practice pattern.
 
+
 ### test
-1 yarn build(npm run build).
+1 yarn compile(npm run compile).
 
 2 example/**/index.html
-
 
 ### 本周计划
 ##### 1 观察者模式：
