@@ -6,10 +6,10 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 
 gulp.task('dev', () => {
-  return gulp.src('./src/**/*.ts')
-    // .pipe(sourcemaps.init())
-    .pipe(tsProject())
-    // .pipe(sourcemaps.write("./"))
-    .pipe(concat('dist.js'))
-    .pipe(gulp.dest('./example/start/'));
+  // return gulp.src('./src/**/*.ts')
+  //   // .pipe(sourcemaps.init())
+  //   .pipe(tsProject())
+  //   // .pipe(sourcemaps.write("./"))
+  //   .pipe(concat('dist.js'))
+  //   .pipe(gulp.dest('./example/start/'));
 });

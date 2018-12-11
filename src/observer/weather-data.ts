@@ -1,71 +1,71 @@
-interface Observer {
-  update(temp: number, humidity: number, pressure: string): void;
-}
+namespace ObserverPattern {
+  export class WeatherData implements Subject {
+    private _temp!: number;
+    public get temp(): number {
+      return this._temp;
+    }
+    public set temp(value: number) {
+      this._temp = value;
+    }
 
-interface DisplayElement {
-  display(): void;
-}
+    private _humidity!: number;
+    public get humidity(): number {
+      return this._humidity;
+    }
+    public set humidity(value: number) {
+      this._humidity = value;
+    }
 
-interface Subject {
-  registerObserver(ob: Observer): void;
-  removeObserver(ob: Observer): void;
-  notifyObserver(temp: number, humidity: number, pressure: string): void;
-}
+    private _pressure!: Pressure;
+    public get pressure(): Pressure {
+      return this._pressure;
+    }
+    public set pressure(value: Pressure) {
+      this._pressure = value;
+    }
 
-class WeatherData implements Subject {
-  private observers: Set<Observer> = new Set();
+    private _observerList: Map<Symbol, Observer> = new Map();
+    private _currentState: boolean = true;
 
-  public temp!: number;
-  public humidity!: number;
-  public pressure!: string;
+    public getState(): boolean {
+      return this._currentState;
+    }
+    public setState(): void {
+      this._currentState = false;
+    }
+    public resetState(): void {
+      this._currentState = true;
+    }
 
-  public measurementsChanged(temp, humidity, pressure): void {
-    this.temp = temp;
-    this.humidity = humidity;
-    this.pressure = pressure;
+    public measurementsChanged(temp: number, humidity: number, pressure: Pressure): void {
+      this._temp = temp;
+      this._humidity = humidity;
+      this._pressure = pressure;
+      this.getState();
+      this.notifyObservers();
+    }
 
-    this.notifyObserver(temp, humidity, pressure);
+    public addObserver(observerName: Symbol, observer: Observer): void {
+      this._observerList.set(observerName, observer);
+    }
+
+    public removeObserver(observerName: Symbol): void {
+      if (!this._observerList.has(observerName)) return;
+
+      this._observerList.delete(observerName);
+    }
+
+    public notifyObservers(): void {
+      if (!this.getState()) return;
+
+      for (let observer of this._observerList.values()) {
+        observer.update(this);
+      }
+      this.setState();
+    }
+
+    public clearObservers(): void {
+      this._observerList.clear();
+    }
   }
-
-  public registerObserver(ob: Observer): void {
-    this.observers.add(ob);
-  }
-
-  public removeObserver(ob: Observer): void {
-    this.observers.delete(ob);
-  }
-
-  public notifyObserver(temp, humidity, pressure): void {
-    this.observers.forEach((ob) => {
-      ob.update(temp, humidity, pressure);
-    });
-  }
-}
-
-class CurrentConditiosDisplay implements DisplayElement, Observer {
-  private weatherData: Subject;
-
-  private humidity!: number;
-  private temp!: number;
-
-  constructor(weatherData: Subject) {
-    this.weatherData = weatherData;
-    this.weatherData.registerObserver(this);
-  }
-
-  public update(temp: number, humidity: number, pressure: string): void {
-    this.temp = temp;
-    this.humidity = humidity;
-    this.display();  // 此函数并不是很适合在此处调用
-  }
-
-  public display(): void {
-    console.log(`温度是：${this.temp},湿度是：${this.humidity}`);
-  }
-}
-
-
-export {
-  WeatherData,
-  CurrentConditiosDisplay
-}
+};

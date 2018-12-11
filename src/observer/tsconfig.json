@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "newLine": "LF",
+    "noUnusedLocals": true,
+    "outFile": "../../example/observer/dist.js",
+    "declaration": true
+  },
+  "files": [
+    "./subject.ts",
+    "./weather-data.ts",
+    "./display/display.ts",
+    "./display/observer.ts",
+    "./display/current-conditions-display.ts",
+    "./display/forecast-dispaly.ts",
+    "./display/statistics-display.ts",
+    "./main.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

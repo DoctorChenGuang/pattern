@@ -1,19 +1,36 @@
-import { WeatherData, CurrentConditiosDisplay } from "./weather-data";
-
-class Test {
-  public static main(): void {
-    let wd: WeatherData = new WeatherData();
-    //注册的位置
-    let ccd = new CurrentConditiosDisplay(wd);
-
-    let count = 0;
-    let clearTimer = setInterval(() => {
-      count++;
-      wd.measurementsChanged(count, count + 50, '上升');
-      count >= 3 && clearInterval(clearTimer);
-    }, 2000);
-
+namespace ObserverPattern {
+  export enum Pressure {
+    UP = '上升',
+    Down = '下降'
   }
-}
 
-Test.main();
+  class Test {
+    public static main(): void {
+      let weatherData = new WeatherData();
+
+      new CurrentConditionsDisplay(weatherData);
+      new ForecastDisplay(weatherData);
+      new StatisticsDisplay(weatherData);
+
+      let temp = 20;
+      let humidity = 50;
+      let timerInterval = 500;
+      let pressure = Pressure.UP;
+
+      let stateIntervalTimer = setInterval(() => {
+        weatherData.resetState();
+      }, 2000);
+
+      let clearTimer = setInterval(() => {
+        temp += 2;
+        humidity += 5;
+        pressure = temp % 3 === 0 ? Pressure.UP : Pressure.Down;
+
+        weatherData.measurementsChanged(temp, humidity, pressure);
+        temp >= 50 && clearInterval(clearTimer) && clearInterval(stateIntervalTimer);
+      }, timerInterval);
+    }
+  }
+
+  Test.main();
+};

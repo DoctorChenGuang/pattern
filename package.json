@@ -4,8 +4,8 @@
   "description": "Just practice pattern.",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp dev",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "compile": "tsc -p src/decorator/tsconfig.json && tsc"
   },
   "repository": {
     "type": "git",
