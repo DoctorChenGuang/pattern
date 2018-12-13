@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "compile": "tsc -p src/decorator/tsconfig.json && tsc",
-    "test": "node test.js"
+    "test": "node __test__/decorator/decorator.js"
   },
   "repository": {
     "type": "git",
